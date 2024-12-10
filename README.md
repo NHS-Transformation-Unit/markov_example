@@ -50,6 +50,8 @@ The folder structure of the repository is shown below:
   ├───.gitignore
   ├───activate.R
   └───settings.json
+├───tests
+  ├───testthat.R
 ├───www
   ├───images
   └───themes
@@ -68,6 +70,10 @@ functions for running the markov model.
 
 ### `renv`
 Contains necessary files for `renv` for reproducibility and collaboration.
+
+### `tests`
+Contains unit tests for checking the Markov Model returns correct sized matrix 
+and that the values returned from multiple cycles are correct.
 
 ### `www`
 Contains the images and theme files used within the app. The `images` include 
