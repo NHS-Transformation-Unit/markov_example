@@ -1,0 +1,71 @@
+body {
+    background-color: #fff;
+    color: #333; 
+    font-family: Franklin Gothic;
+    font-size: 11pt;
+    font-weight: 300
+}
+
+h1 {
+  color: #407EC9;
+}
+
+h2 {
+  color: #407EC9;
+}
+
+h3 {
+  color: #407EC9;
+}
+
+h4 {
+  color: #407EC9;
+}
+
+hr {
+  color: #407EC9;
+  border-color: #407EC9;
+}
+
+.navbar {
+    background-color: #407EC9;
+    border-color: #407EC9;
+    color: #fff;
+}
+
+.navbar-brand{
+  color: #ffffff !important;
+}
+
+.navbar-nav > li > a {
+  color: #ffffff !important;
+}
+
+.navbar-nav > li > a:hover {
+  color: #000000 !important;
+}
+
+.navbar-nav > li.active > a {
+  color: #407EC9 !important;
+}
+
+.navbar-nav > li.active > a {
+  background-color: #ffffff !important;
+}
+
+.btn {
+    background-color: #407EC9;
+    border-color: #407EC9;
+    color: #ffffff;
+}
+
+.btn:hover {
+  background-color: #ffffff;
+  border-color: #407EC9;
+  color: #407EC9;
+  
+}
+
+a {
+    color: #407EC9;
+}
