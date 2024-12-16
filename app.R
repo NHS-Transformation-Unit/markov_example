@@ -466,6 +466,19 @@ server <- function(input, output, session){
   
   observeEvent(input$run_model, {
     req(state_names(), initial_counts(), transition_matrix())
+    
+    mat <- as.matrix(transition_matrix())
+    
+    row_sums <- rowSums(mat)
+    if (any(abs(row_sums - 1) > 1e-6)) {
+      showModal(modalDialog(
+        title = "Transition Matrix Error",
+        "Each row in the transition matrix must sum to 1. Please check the probabilities and try again.",
+        easyClose = TRUE
+      ))
+      return()
+    }
+    
     if (length(state_names()) != input$num_states || length(initial_counts()) != input$num_states) {
       showModal(modalDialog(
         title = "Input Error",
