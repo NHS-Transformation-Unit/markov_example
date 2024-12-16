@@ -39,15 +39,20 @@ ui <- navbarPage(
         It is particularly useful where outcomes are uncertain and the 
         transition between different states can be expressed as a probability. 
         This technique is frequently used in health economics to model issues 
-        such as the spread of an infection or disease progression. The model 
-        can simulate how patients move between different ", em("health states")," 
-        across multiple time periods or ", em("cycles.")),
-      div(img(src = "images/simple_markov-Frontpage Example.drawio.png",
+        such as the spread of an infection or disease progression. The diagram 
+        below shows a few examples of Markov Models:"),
+      div(img(src = "images/simple_markov-Frontpage.drawio.png",
               height = "350px"),
           style = "text-align: center;"),
       br(),
-      p("For example the diagram above is a representation of a Markov Model 
-        showing the relationships between different health states."),
+      p(HTML("The first example shows a model for a simple model of different 
+             weather states. Each type of weather represents a <em>state</em> 
+             and the arrows show the possible movements from one day to the 
+             next. The second example shows a simple model of disease 
+             progression. Here the <em>states</em> are represented by the 
+             different conditions that a patient may be in at any given time. 
+             There is more information on the key concepts within Markov 
+             modelling further on this page.")),
       br(),
       h3("How to use this App"),
       tags$hr(style = "#407EC9"),
