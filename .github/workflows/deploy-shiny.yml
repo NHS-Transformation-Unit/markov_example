@@ -1,29 +1,35 @@
+name: Deploy Shiny App to shinyapps.io
+
 on:
   push:
-     branches:
-       - main
-
-name: Deploy template app to shinyapps.io
+    branches:
+      - main  # Trigger when code is pushed to main branch
 
 jobs:
-  deploy-shiny:
-    name: Deploy to shinyapps.io
-    runs-on: ubuntu-latest
-    env:
-      GITHUB_PAT: ${{ secrets.ACCESS_TOKEN }}
-      ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-        
+  deploy:
+    name: Publish to shinyapps.io
+    runs-on: ubuntu-latest  # Use the latest Ubuntu image
+    
     steps:
-       - name: 🛎️ Checkout repository
-         uses: actions/checkout@v4
-         with:
-           fetch-depth: 0
-       - id: deploy
-         name: 💎 Deploy to shinyapps.io
-         uses: qwert666/shinyapps-actions@main
-         env:
-           SHINY_USERNAME: ${{ secrets.SHINYAPPS_ACCOUNT }}
-           SHINY_TOKEN: ${{ secrets.SHINYAPPS_TOKEN }}
-           SHINY_SECRET: ${{ secrets.SHINYAPPS_SECRET }}
-           APP_NAME: 'markov_example'
-           
+      # Step 1: Checkout the repository
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # Step 2: Set up R environment
+      - name: Set up R
+        uses: r-lib/actions/setup-r@v2
+
+      # Step 3: Install rsconnect and dependencies
+      - name: Install rsconnect and dependencies
+        run: |
+          R -e 'install.packages("rsconnect")'
+      
+      # Step 4: Deploy the Shiny app
+      - name: Deploy app to shinyapps.io
+        env:
+          SHINYAPPS_ACCOUNT: ${{ secrets.SHINYAPPS_ACCOUNT }}
+          SHINYAPPS_TOKEN: ${{ secrets.SHINYAPPS_TOKEN }}
+          SHINYAPPS_SECRET: ${{ secrets.SHINYAPPS_SECRET }}
+        run: |
+          R -e 'rsconnect::setAccountInfo(name="${{ secrets.SHINYAPPS_ACCOUNT }}", token="${{ secrets.SHINYAPPS_TOKEN }}", secret="${{ secrets.SHINYAPPS_SECRET }}")'
+          R -e 'rsconnect::deployApp(appDir = ".", appName = "YOUR_APP_NAME")'
