@@ -1,0 +1,29 @@
+on:
+  push:
+     branches:
+       - main
+
+name: Deploy template app to shinyapps.io
+
+jobs:
+  deploy-shiny:
+    name: Deploy to shinyapps.io
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_PAT: ${{ secrets.ACCESS_TOKEN }}
+      ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+        
+    steps:
+       - name: 🛎️ Checkout repository
+         uses: actions/checkout@v4
+         with:
+           fetch-depth: 0
+       - id: deploy
+         name: 💎 Deploy to shinyapps.io
+         uses: qwert666/shinyapps-actions@main
+         env:
+           SHINY_USERNAME: ${{ secrets.SHINYAPPS_ACCOUNT }}
+           SHINY_TOKEN: ${{ secrets.SHINYAPPS_TOKEN }}
+           SHINY_SECRET: ${{ secrets.SHINYAPPS_SECRET }}
+           APP_NAME: 'markov_example'
+           
