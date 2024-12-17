@@ -31,5 +31,5 @@ jobs:
           SHINYAPPS_TOKEN: ${{ secrets.SHINYAPPS_TOKEN }}
           SHINYAPPS_SECRET: ${{ secrets.SHINYAPPS_SECRET }}
         run: |
-          R -e 'rsconnect::setAccountInfo(name="${{ secrets.SHINYAPPS_ACCOUNT }}", token="${{ secrets.SHINYAPPS_TOKEN }}", secret="${{ secrets.SHINYAPPS_SECRET }}")'
+          R -e 'rsconnect::setAccountInfo(name="nhs-tu-andy-wilson", token="${{ secrets.SHINYAPPS_TOKEN }}", secret="${{ secrets.SHINYAPPS_SECRET }}")'
           R -e 'rsconnect::deployApp(appDir = ".", appName = "markov_example", forceUpdate = TRUE)'
